@@ -63,7 +63,8 @@ export const Routes = [{
     method: "post",
     route: "/artist/splashes",
     controller: SplashController,
-    action: "save"
+    action: "save",
+    view: "pages/artist"
 },
 {
     method: "put",
@@ -72,8 +73,9 @@ export const Routes = [{
     action: "edit"
 },
 {
-    method: "delete",
-    route: "/artist/splashes/:id",
+    method: "post",
+    route: "/artist/splashes/delete",
     controller: SplashController,
-    action: "remove"
+    action: "remove",
+    view: 'pages/artist'
 }];

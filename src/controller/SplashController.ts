@@ -11,18 +11,21 @@ export class SplashController {
 
     //visualizar todas as aplashs
     async all(request: Request, response: Response, next: NextFunction) {
-        return {splashs: await this.splashRepository.find() } 
+        return {splashs: await this.splashRepository.find() , error: ''} 
     }
 
     //salvar Splash
     async save(request: Request, response: Response, next: NextFunction) {
+
+        console.log(request.body);
+        
         try {
-
             const splash = await this.splashRepository.save(request.body);
-            return {splash: splash}
-
+            // return {splashs: splash}
+            return {splashs: await this.splashRepository.find() , error: ''}
         } catch (error) {
-            return {splash: [], error: 'error_save_splash'}
+            //return {splashs: [], error: 'error_save_splash'}
+            return {splashs: await this.splashRepository.find(), error: "Não foi possivel adicionar a splash" } 
         }        
     }
 
@@ -55,14 +58,14 @@ export class SplashController {
     //remover Splash
     async remove(request:Request, response: Response, next: NextFunction){
         try {
-            const splash = await this.splashRepository.findOne(request.params.id);
+            const splash = await this.splashRepository.findOne(request.body.id);
 
             if (splash) {
                 await this.splashRepository.remove(splash);
-                return {splash: 'deleted_ok'}
+                return {splashs: await this.splashRepository.find() , error: ''}
             }
         } catch (error) {
-            return {splash: [], error}
+            return {splashs: await this.splashRepository.find() , error: 'Erro ao deletar'}
         }
     }
 
