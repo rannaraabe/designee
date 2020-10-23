@@ -1,7 +1,30 @@
 import { SplashController } from "./controller/SplashController";
-import {UserController} from "./controller/UserController";
+import { UserController } from "./controller/UserController";
 
 export const Routes = [{
+    method: "get",
+    route: "/",
+    controller: UserController,
+    action: "all",
+    view: "pages/index"
+}, {
+    method: "post",
+    route: "/login",
+    controller: UserController,
+    action: "login"
+}, {
+    method: "get",
+    route: "/register",
+    controller: UserController,
+    action: "all",
+    view: "pages/register"
+}, {
+    method: "post",
+    route: "/register",
+    controller: UserController,
+    action: "save",
+    view: "pages/register"
+}, {
     method: "get",
     route: "/users",
     controller: UserController,
@@ -13,11 +36,6 @@ export const Routes = [{
     controller: UserController,
     action: "one"
 }, {
-    method: "post",
-    route: "/users",
-    controller: UserController,
-    action: "save"
-}, {
     method: "put",
     route: "/users/:id",
     controller: UserController,
@@ -28,12 +46,6 @@ export const Routes = [{
     controller: UserController,
     action: "remove"
 }, {
-    method: "post",
-    route: "/users/login",
-    controller: UserController,
-    action: "login"
-},
-{
     method: "get",
     route: "/feed",
     controller: SplashController,
