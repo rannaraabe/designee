@@ -35,8 +35,33 @@ export const Routes = [{
 },
 {
     method: "get",
-    route: "/splash",
+    route: "/feed",
     controller: SplashController,
     action: "all",
-    view: "pages/splash"
+    view: "pages/feed"
+},
+{
+    method: "get",
+    route: "/artist/splashes",
+    controller: SplashController,
+    action: "all",
+    view: "pages/artist"
+},
+{
+    method: "post",
+    route: "/artist/splashes",
+    controller: SplashController,
+    action: "save"
+},
+{
+    method: "put",
+    route: "/artist/splashes/:id",
+    controller: SplashController,
+    action: "edit"
+},
+{
+    method: "delete",
+    route: "/artist/splashes/:id",
+    controller: SplashController,
+    action: "remove"
 }];
