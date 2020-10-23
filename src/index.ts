@@ -14,9 +14,9 @@ createConnection().then(async connection => {
     const app = express();
     //set cors
     app.use('*', cors());
-    
-    app.use(bodyParser.json());
-    
+
+    app.use(bodyParser.urlencoded({ extended: true }))
+
     // set the view engine to ejs
     app.set('view engine', 'ejs');
 
