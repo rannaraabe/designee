@@ -25,7 +25,7 @@ export class UserController {
     async save(request: Request, response: Response, next: NextFunction) {
         try {
             const user = await this.userRepository.save(request.body);
-            response.json(user);
+            response.redirect("/");
         } catch (error) {
             response.json({erro: "Não foi possível cadastrar o usuário.", error}).status(400);
         }        
@@ -67,14 +67,15 @@ export class UserController {
             if(!user) {
                 response.json({error: "Usuário não encontrado!"}).status(400);
             }
-            
+
             if(user.password == request.body.password) {
                 const token = jwt.sign(
                     { id: user.id, user_email: user.email, },
                     config.jwtSecret,
                     { expiresIn: "12h" }
                     );
-                    
+
+                    response.redirect("/feed");
                     return { "Logged": true, token }
                 } else {
                     return { error: "login_fail" };
