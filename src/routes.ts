@@ -78,4 +78,11 @@ export const Routes = [{
     controller: SplashController,
     action: "remove",
     view: 'pages/artist'
+},
+{
+    method: "post",
+    route: "/splash/like",
+    controller: SplashController,
+    action: "curtirSplash",
+    view: 'pages/feed'
 }];

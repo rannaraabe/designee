@@ -2,10 +2,12 @@ import {
     Entity, 
     PrimaryGeneratedColumn, 
     Column, 
-    ManyToOne,     
+    ManyToOne,  
+    OneToMany,   
     CreateDateColumn,
     UpdateDateColumn
 } from "typeorm";
+import { CommentSplash } from "./CommentSplash";
 
 import {User} from "./User";
 
@@ -28,6 +30,9 @@ export class Splash {
     price: number;
 
     @Column()
+    likes: number;
+
+    @Column()
     @CreateDateColumn()
     createAt: Date;
 
@@ -37,5 +42,8 @@ export class Splash {
 
     @ManyToOne(() => User, user => user.splashs)
     user: User;
+
+    @OneToMany(() => CommentSplash, comment => comment.splash)
+    splashsComment: CommentSplash[];
 
 }

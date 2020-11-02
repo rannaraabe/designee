@@ -95,7 +95,7 @@ export class SplashController {
         try {
             const splash = await this.splashRepository.findOne(request.params.id);
             if(splash) {
-                const update = await this.userRepository.update(splash.id, request.body)
+                const update = await this.splashRepository.update(splash.id, request.body)
                 return {splash: update}
             }
             
@@ -104,9 +104,18 @@ export class SplashController {
         }
     }
 
-
-
-
-
+    async curtirSplash(request: Request, response:Response, next:NextFunction){
+        try {
+            const splash = await this.splashRepository.findOne(request.params.id);
+            if(splash) 
+            {
+                splash.likes = splash.likes + 1;
+                const update = await this.splashRepository.update(splash.id, splash);
+                return {splashs: await this.splashRepository.find() , error: ''}
+            }
+        } catch (error) {
+            return {splashs: await this.splashRepository.find() , error: 'erro ao curtir splash'}
+        }
+    }
 
 }
