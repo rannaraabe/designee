@@ -70,7 +70,8 @@ export const Routes = [{
     method: "put",
     route: "/artist/splashes/:id",
     controller: SplashController,
-    action: "edit"
+    action: "edit",
+    view: 'pages/artist'
 },
 {
     method: "post",

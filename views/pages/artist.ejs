@@ -12,29 +12,39 @@
   </head>
   <body>
     <!-- Menu -->
-    <nav class="site-header sticky-top py-2 bg-dark">
-        <div class="container d-flex flex-column flex-md-row justify-content-around">
-            <a class="py-2 text-light" aria-label="Designee">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" class="bi bi-brush" role="img" ocusable="false">
-                    <title>Designee</title>
-                    <path fill-rule="evenodd" d="M15.825.12a.5.5 0 0 1 .132.584c-1.53 3.43-4.743 8.17-7.095 10.64a6.067 6.067 0 0 1-2.373 1.534c-.018.227-.06.538-.16.868-.201.659-.667 1.479-1.708 1.74a8.117 8.117 0 0 1-3.078.132 3.658 3.658 0 0 1-.563-.135 1.382 1.382 0 0 1-.465-.247.714.714 0 0 1-.204-.288.622.622 0 0 1 .004-.443c.095-.245.316-.38.461-.452.393-.197.625-.453.867-.826.094-.144.184-.297.287-.472l.117-.198c.151-.255.326-.54.546-.848.528-.739 1.2-.925 1.746-.896.126.007.243.025.348.048.062-.172.142-.38.238-.608.261-.619.658-1.419 1.187-2.069 2.175-2.67 6.18-6.206 9.117-8.104a.5.5 0 0 1 .596.04zM4.705 11.912a1.23 1.23 0 0 0-.419-.1c-.247-.013-.574.05-.88.479a11.01 11.01 0 0 0-.5.777l-.104.177c-.107.181-.213.362-.32.528-.206.317-.438.61-.76.861a7.127 7.127 0 0 0 2.657-.12c.559-.139.843-.569.993-1.06a3.121 3.121 0 0 0 .126-.75l-.793-.792zm1.44.026c.12-.04.277-.1.458-.183a5.068 5.068 0 0 0 1.535-1.1c1.9-1.996 4.412-5.57 6.052-8.631-2.591 1.927-5.566 4.66-7.302 6.792-.442.543-.796 1.243-1.042 1.826a11.507 11.507 0 0 0-.276.721l.575.575zm-4.973 3.04l.007-.005a.031.031 0 0 1-.007.004zm3.582-3.043l.002.001h-.002z"/>
-                </svg>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 80px;">
+        <div class="collapse navbar-collapse d-flex justify-content-between align-items-center" style="padding-right: 5%; padding-left: 5%;">
+            <a class="nav-link">
+                <img src="../../img/logo.png" width="30" height="30" class="d-inline-block align-top" href="/feed">
             </a>
+            <div class="d-flex align-right">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="modal" data-target="#addSplash">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                            </svg>
+                            New splash
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+                                <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+                            </svg>
+                            Profile
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+                </div>
         </div>
     </nav>
-
-    <!-- Jumbotron -->
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <p class="lead">
-                Esse é o seu espaço de splashes! Compartilhe e negocie sua arte com segurança..
-                Você pode adicionar, editar e remover suas splashes! Divirta-se!
-            </p>
-            <hr class="my-4">
-            <a class="btn btn-outline-secondary" role="button" data-toggle="modal" data-target="#addSplash">Nova splash</a>
-            <a class="btn btn-outline-secondary" href="#listSplashes" role="button">Minhas splashes</a>
-        </div>
-    </div>
 
     <!-- Feed splashes -->
     <div class="container">
@@ -55,21 +65,18 @@
                                 <br>
                             </p>
                             <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
-                                <form action="/artist/splashes/delete" method="post">
-                                    <input type="hidden" name="id" value="<%= splash.id %>"> 
-                                    <button type="submit" class="btn btn-sm btn-outline-danger" >Remover</button>
-                                </form>
-                            </div>
-                            <div class="d-flex align-right">
-                                <button type="button" class="btn btn-sm btn-outline-success">
-                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" d="M15 4H1v8h14V4zM1 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H1z"/>
-                                        <path d="M13 4a2 2 0 0 0 2 2V4h-2zM3 4a2 2 0 0 1-2 2V4h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 12a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
-                                    </svg>
-                                </button>
-                            </div>
+                                <div class="dropdown">
+                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Options
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#editSplash">Editar</a>
+                                        <form action="/artist/splashes/delete" method="post" class="dropdown-item">
+                                            <input type="hidden" name="id" value="<%= splash.id %>"> 
+                                            <button type="submit">Remove</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -84,7 +91,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addSplashLabel">Adicionar Nova Splash</h5>
+                    <h5 class="modal-title" id="addSplashLabel">Add New Splash</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -93,29 +100,80 @@
                     <form action="/artist/splashes" method="post">
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <label for="inputTitle">Título</label>
+                                <label for="inputTitle">Title:</label>
                                 <input type="text" name="title" class="form-control" id="inputTitle" placeholder="Ex. It's all about love">
                             </div>
                             <div class="form-group col-md-12">
-                                <label for="inputPrice">Preço</label>
-                                <input type="number" name="price" class="form-control" id="inputPrice" placeholder="Ex. $40">
+                                <label for="inputPrice">Price:</label>
+                                <input type="number" name="price" class="form-control" id="inputPrice" placeholder="$40">
                             </div>
                             <div class="form-group col-md-12">
-                                <label for="inputCategoria">Categoria</label>
-                                <input type="text" name="category" class="form-control" id="inputCategoria" placeholder="Ex. It's all about love">
+                                <label for="inputCategory">Category:</label>
+                                <input type="text" name="category" class="form-control" id="inputCategory" placeholder="Ex. Digital Art">
                             </div>
                             <div class="form-group col-md-12">
-                                <label for="inputDisponibility">Disponibilidade</label>
+                                <label for="inputDisponibility">Disponibility:</label>
                                 <select id="inputDisponibility" name="disponibility" class="form-control">
-                                    <option selected>Escolher...</option>
-                                    <option value="true">Disponível</option>
-                                    <option value="false">Indisponível</option>
+                                    <option selected>Choose...</option>
+                                    <option value="true">Available</option>
+                                    <option value="false">Unavailable</option>
                                 </select>
                             </div>
+                            <input type="hidden" name="likes" value="0"> 
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">Salvar</button>
+                    <button type="submit" class="btn btn-dark">To save</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+     <!-- Modal Edit Splash -->
+     <div class="modal fade" id="editSplash" tabindex="-1" aria-labelledby="editSplashLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editSplashLabel">Edit Splash</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/artist/splashes/edit/<%= splash.id %>" method="put">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="inputTitle">Title:</label>
+                                <input type="text" name="title" class="form-control" id="inputTitle" value="<%= splash.title %>">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="inputPrice">Price:</label>
+                                <input type="number" name="price" class="form-control" id="inputPrice" value="<%= splash.price %>">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="inputCategory">Category:</label>
+                                <input type="text" name="category" class="form-control" id="inputCategory" value="<%= splash.category %>">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="inputDisponibility">Disponibility</label>
+                                <select id="inputDisponibility" name="disponibility" class="form-control">
+                                    <% if (splash.disponibility){ %>
+                                    <option>Choose...</option>
+                                    <option selected value="true">Available</option>
+                                    <option value="false">Unavailable</option>
+                                    <% } else { %>
+                                    <option>Choose...</option>
+                                    <option value="true">Available</option>
+                                    <option selected value="false">Unavailable</option>
+                                    <% }%>
+                                </select>
+                            </div>
+                            <input type="hidden" name="likes" value="<%= splash.likes %>"> 
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-dark">To save</button>
                 </div>
             </form>
             </div>

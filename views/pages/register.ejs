@@ -11,27 +11,37 @@
     <title>Registre-se</title>
   </head>
   <body>
-    <div class="container">
-     <div class="jumbotron">
-      <form class="form-signup" action="/register" method="post">
-        <h1 class="form-signup-heading">Preencha todas as informações abaixo para concluir seu cadastro.</h1>
-        <p>
-          <input type="text" id="fullname" name="fullname"
-                 placeholder="Nome completo" required="true">
-        </p>
-        <p>
-          <input type="email" id="email" name="email"
-                 placeholder="Email" required="true">
-        </p>
-        <p>
-          <input type="password" id="password" name="password"
-                 placeholder="Senha" required="true">
-        </p>
-        <input type="checkbox" id="isArtist" name="isArtist"> Sou artista e desejo compartilhar e monetizar minhas obras de arte
-        <p>
-        </p>
-        <button class="btn btn-lg btn-primary" type="submit">Finalizar cadastro</button>
-     </div>
+    <div class="container" style="padding-top: 8%;">
+      <img src="../../img/logo.png">
+
+      <div class="jumbotron" style="padding: 5%;">
+        <form class="form-signup" action="/register" method="post">
+          <h4 style="text-align: center;">Register</h4>
+          <div class="form-row">
+              <div class="form-group col-md-12">
+                <label for="fullname">Full name:</label>
+                <input style="width: 100%;" type="text" id="fullname" name="fullname" required="true">
+              </div>
+          </div>
+          <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="email">Email:</label>
+                <input style="width: 100%;" type="email" id="email" name="email" required="true">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="password">Password:</label>
+                <input style="width: 100%;" type="password" id="password" name="password" required="true">
+              </div>
+          </div>
+          <div class="form-row">
+              <div class="form-group col-md-12">
+                <input type="checkbox" id="isArtist" name="isArtist" value="true">
+                I'm artist and I agree to monetize my art.
+              </div>
+          </div>
+          <button class="btn btn-dark" type="submit">Sign in</button>
+        </form>
+      </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
