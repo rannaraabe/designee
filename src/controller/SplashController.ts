@@ -13,7 +13,6 @@ export class SplashController {
     async all(request: Request, response: Response, next: NextFunction) {
         return {
             splashs: await this.splashRepository.find(),
-            user: await this.userRepository.findOne(request.params.id),
             error: ''
         }
     }
@@ -46,14 +45,14 @@ export class SplashController {
                 })
 
                 if (splashs) {
-                    return { splash: splashs }
+                    return { splashs: splashs, userId: user.id, error: '' }
                 }
             } else {
-                return { splash: [] }
+                return { splashs: [], userId: user.id, error: '' }
             }
 
         } catch (error) {
-            return { splash: [], error }
+            return { splashs: [], error: error }
         }
     }
 
@@ -120,21 +119,70 @@ export class SplashController {
     }
 
     // favoritar splash
-    async favSplash(request: Request, response:Response, next:NextFunction){
+    async favSplash(request: Request, response: Response, next: NextFunction) {
         try {
             const splash = await this.splashRepository.findOne(request.params.id);
             if (splash) {
                 splash.favorite = true;
                 const update = await this.splashRepository.update(splash.id, splash);
-                return {splashs: await this.splashRepository.find() , error: ''}
+                return { splashs: await this.splashRepository.find(), error: '' }
             }
         } catch (error) {
-            return {splashs: await this.splashRepository.find() , error: 'erro ao curtir splash'}
+            return { splashs: await this.splashRepository.find(), error: 'erro ao curtir splash' }
         }
     }
 
     //visualizar todas as splashs favoritas
     async allFavs(request: Request, response: Response, next: NextFunction) {
-        return {splashs: await this.splashRepository.find() , error: ''} 
+        return {
+            splashs: await this.splashRepository.find({
+                where: {
+                    favorite: true
+                }
+            }), error: ''
+        }
+    }
+
+    // adicionar splash ao carrinho
+    async addToCart(request: Request, response: Response, next: NextFunction) {
+        try {
+            const splash = await this.splashRepository.findOne(request.params.id);
+            if (splash) {
+                splash.cart = true;
+                const update = await this.splashRepository.update(splash.id, splash);
+                return { splashs: await this.splashRepository.find(), error: '' }
+            }
+        } catch (error) {
+            return { splashs: await this.splashRepository.find(), error: 'erro ao adicionar splash ao carrinho' }
+        }
+    }
+
+    // visualizar carrinho
+    async allCart(request: Request, response: Response, next: NextFunction) {
+        return {
+            splashs: await this.splashRepository.find({
+                where: {
+                    cart: true
+                }
+            }), error: ''
+        }
+    }
+
+    async clearCart(request: Request, response: Response, next: NextFunction) {
+        try {
+            const splashs = request.body.splashs;
+            console.log(splashs);
+            // if (splashs) {
+            //     for (var splash of splashs) {
+            //         console.log(splash);
+            //         splash.cart = false;
+            //         const update = await this.splashRepository.update(splash.id, splash);
+            //     }
+            // }
+
+            return { splashs: await this.splashRepository.find(), error: '' }
+        } catch (error) {
+            return { splashs: await this.splashRepository.find(), error: 'erro ao finalizar a compra' }
+        }
     }
 }
