@@ -5,7 +5,9 @@ import {
     Unique,
     CreateDateColumn,
     UpdateDateColumn,
-    OneToMany
+    OneToMany,
+    ManyToMany,
+    JoinTable
 } from "typeorm";
 
 import * as bcrypt from "bcryptjs";
@@ -40,6 +42,8 @@ export class User {
 
     @OneToMany(() => Splash, splash => splash.user)
     splashs: Splash[];
+
+    cart: Splash[];
 
     hashPassword() {
         this.password = bcrypt.hashSync(this.password, 8);

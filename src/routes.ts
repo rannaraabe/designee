@@ -51,20 +51,26 @@ export const Routes = [{
     controller: SplashController,
     action: "all",
     view: "pages/feed"
+}, {
+    method: "get",
+    route: "/cart",
+    controller: SplashController,
+    action: "all",
+    view: "pages/cart"
 },
 {
     method: "get",
     route: "/artist/splashes",
     controller: SplashController,
     action: "all",
-    view: "pages/artist"
+    view: "pages/splashes"
 },
 {
     method: "post",
     route: "/artist/splashes",
     controller: SplashController,
     action: "save",
-    view: "pages/artist"
+    view: "pages/splashes"
 },
 {
     method: "put",
@@ -78,7 +84,7 @@ export const Routes = [{
     route: "/artist/splashes/delete",
     controller: SplashController,
     action: "remove",
-    view: 'pages/artist'
+    view: 'pages/splashes'
 },
 {
     method: "post",

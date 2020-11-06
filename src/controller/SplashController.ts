@@ -11,66 +11,68 @@ export class SplashController {
 
     //visualizar todas as aplashs
     async all(request: Request, response: Response, next: NextFunction) {
-        return {splashs: await this.splashRepository.find() , error: ''} 
+        return {
+            splashs: await this.splashRepository.find(),
+            user: await this.userRepository.findOne(request.params.id),
+            error: ''
+        }
     }
 
     //salvar Splash
     async save(request: Request, response: Response, next: NextFunction) {
 
         console.log(request.body);
-        
+
         try {
             const splash = await this.splashRepository.save(request.body);
             // return {splashs: splash}
-            return {splashs: await this.splashRepository.find() , error: ''}
+            return { splashs: await this.splashRepository.find(), error: '' }
         } catch (error) {
             //return {splashs: [], error: 'error_save_splash'}
-            return {splashs: await this.splashRepository.find(), error: "Não foi possivel adicionar a splash" } 
-        }        
+            return { splashs: await this.splashRepository.find(), error: "Não foi possivel adicionar a splash" }
+        }
     }
 
     //visualizar splashs (Por usuario)
     async allByUser(request: Request, response: Response, next: NextFunction) {
-
         try {
-
             const user = await this.userRepository.findOne(request.params.id);
 
             if (user) {
                 const splashs = await this.splashRepository.find({
                     where: {
-                        user:user
+                        user: user
                     }
                 })
 
                 if (splashs) {
-                    return {splash: splashs}
+                    return { splash: splashs }
                 }
-            }else{
-                return {splash: []}
+            } else {
+                return { splash: [] }
             }
 
         } catch (error) {
-            return {splash: [], error}
+            return { splash: [], error }
         }
     }
 
     //remover Splash
-    async remove(request:Request, response: Response, next: NextFunction){
+    async remove(request: Request, response: Response, next: NextFunction) {
         try {
             const splash = await this.splashRepository.findOne(request.body.id);
 
             if (splash) {
                 await this.splashRepository.remove(splash);
-                return {splashs: await this.splashRepository.find() , error: ''}
+                return { splashs: await this.splashRepository.find(), error: '' }
             }
         } catch (error) {
-            return {splashs: await this.splashRepository.find() , error: 'Erro ao deletar'}
+            return { splashs: await this.splashRepository.find(), error: 'Erro ao deletar' }
         }
     }
 
     //filtrar Splash
-    async splashByFilter(request:Request, response: Response, next: NextFunction){
+    async splashByFilter(request: Request, response: Response, next: NextFunction) {
         try {
             const splashs = await this.splashRepository.find({
                 where: {
@@ -79,14 +81,14 @@ export class SplashController {
             });
 
             if (splashs) {
-                return {splash: splashs}
+                return { splash: splashs }
             }
 
-            else{
-                return {splash: [] }
+            else {
+                return { splash: [] }
             }
         } catch (error) {
-            return {splash: [], error}
+            return { splash: [], error }
         }
     }
 
@@ -94,27 +96,26 @@ export class SplashController {
     async edit(request: Request, response: Response, next: NextFunction) {
         try {
             const splash = await this.splashRepository.findOne(request.params.id);
-            if(splash) {
+            if (splash) {
                 const update = await this.splashRepository.update(splash.id, request.body)
-                return {splash: update}
+                return { splash: update }
             }
-            
+
         } catch (error) {
-            return {splash: [] , error}
+            return { splash: [], error }
         }
     }
 
-    async curtirSplash(request: Request, response:Response, next:NextFunction){
+    async curtirSplash(request: Request, response: Response, next: NextFunction) {
         try {
             const splash = await this.splashRepository.findOne(request.params.id);
-            if(splash) 
-            {
+            if (splash) {
                 splash.likes = splash.likes + 1;
                 const update = await this.splashRepository.update(splash.id, splash);
-                return {splashs: await this.splashRepository.find() , error: ''}
+                return { splashs: await this.splashRepository.find(), error: '' }
             }
         } catch (error) {
-            return {splashs: await this.splashRepository.find() , error: 'erro ao curtir splash'}
+            return { splashs: await this.splashRepository.find(), error: 'erro ao curtir splash' }
         }
     }
 
@@ -136,5 +137,4 @@ export class SplashController {
     async allFavs(request: Request, response: Response, next: NextFunction) {
         return {splashs: await this.splashRepository.find() , error: ''} 
     }
-
 }
