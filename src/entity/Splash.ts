@@ -33,6 +33,9 @@ export class Splash {
     likes: number;
 
     @Column()
+    favorite: boolean;
+
+    @Column()
     @CreateDateColumn()
     createAt: Date;
 

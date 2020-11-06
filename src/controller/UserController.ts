@@ -1,4 +1,4 @@
-import { getRepository } from "typeorm";
+import { getRepository, Like } from "typeorm";
 import { NextFunction, Request, Response } from "express";
 import { User } from "../entity/User";
 
@@ -86,4 +86,21 @@ export class UserController {
 
     }
 
+    // filtrar artista
+    async listArtists(request: Request, response: Response, next: NextFunction) {
+        try {
+            const name = "%"+request.query.name+"%"
+            if(request.query.name == ''){
+                return {users: await this.userRepository.find({
+                    where: { isArtist: 't' }
+                })} 
+            } else {
+                return {users : await this.userRepository.find({
+                    where: { isArtist: 't', fullname: Like(name) }
+                })}
+            }
+        } catch (error) {
+            response.json({erro: "Erro ao buscar usuário.", error}).status(400);
+        }
+    }
 }

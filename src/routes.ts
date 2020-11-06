@@ -70,7 +70,8 @@ export const Routes = [{
     method: "put",
     route: "/artist/splashes/:id",
     controller: SplashController,
-    action: "edit"
+    action: "edit",
+    view: 'pages/artist'
 },
 {
     method: "post",
@@ -85,4 +86,25 @@ export const Routes = [{
     controller: SplashController,
     action: "curtirSplash",
     view: 'pages/feed'
+},
+{
+    method: "post",
+    route: "/splash/favorite",
+    controller: SplashController,
+    action: "favSplash",
+    view: 'pages/feed'
+},
+{
+    method: "get",
+    route: "/favorites",
+    controller: SplashController,
+    action: "allFavs",
+    view: "pages/favorites"
+},
+{
+    method: "get",
+    route: "/search",
+    controller: UserController,
+    action: "listArtists",
+    view: "pages/searchArtist"
 }];
