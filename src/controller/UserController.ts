@@ -15,8 +15,9 @@ export class UserController {
 
     async one(request: Request, response: Response, next: NextFunction) {
         try {
-            const user = this.userRepository.findOne(request.params.id);
-            response.json(user)
+            const user = await this.userRepository.findOne(request.params.id);
+            console.log(user);
+            return { user: user };
         } catch (error) {
             response.json({ erro: "Não foi possível encontrar o usuário.", error }).status(400);
         }
@@ -24,7 +25,10 @@ export class UserController {
 
     async save(request: Request, response: Response, next: NextFunction) {
         try {
-            const user = await this.userRepository.save(request.body);
+            const user = request.body;
+            if (user.isArtist === 'TRUE')
+                user.isArtist = true;
+            await this.userRepository.save(user);
             response.redirect("/");
         } catch (error) {
             response.json({ erro: "Não foi possível cadastrar o usuário.", error }).status(400);
@@ -76,7 +80,7 @@ export class UserController {
                 );
 
                 if (user.isArtist) {
-                    response.redirect("/artist/splashes");
+                    response.redirect("/artist/"+user.id+"/splashes");
                 } else {
                     response.redirect("/feed");
                 }
@@ -97,7 +101,7 @@ export class UserController {
             if(request.query.name == ''){
                 return {users: await this.userRepository.find({
                     where: { isArtist: 't' }
-                })} 
+                })}
             } else {
                 return {users : await this.userRepository.find({
                     where: { isArtist: 't', fullname: Like(name) }
