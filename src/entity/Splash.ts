@@ -36,6 +36,9 @@ export class Splash {
     favorite: boolean;
 
     @Column()
+    cart: boolean;
+
+    @Column()
     @CreateDateColumn()
     createAt: Date;
 
@@ -48,5 +51,4 @@ export class Splash {
 
     @OneToMany(() => CommentSplash, comment => comment.splash)
     splashsComment: CommentSplash[];
-
 }
