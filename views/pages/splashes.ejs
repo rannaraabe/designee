@@ -13,175 +13,175 @@
   <body>
     <!-- Menu -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 80px;">
-        <div class="collapse navbar-collapse d-flex justify-content-between align-items-center" style="padding-right: 5%; padding-left: 5%;">
-            <a class="nav-link">
-                <img src="../../img/logo.png" width="30" height="30" class="d-inline-block align-top" href="/feed">
-            </a>
-            <div class="d-flex align-right">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="modal" data-target="#addSplash">
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                                <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                            </svg>
-                            New splash
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
-                                <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                                <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
-                            </svg>
-                            Profile
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Logout</a>
-                        </div>
-                    </li>
-                </ul>
-                </div>
+      <div class="collapse navbar-collapse d-flex justify-content-between align-items-center" style="padding-right: 5%; padding-left: 5%;">
+        <a class="nav-link">
+          <img src="../../img/logo.png" width="30" height="30" class="d-inline-block align-top" href="/feed">
+        </a>
+        <div class="d-flex align-right">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="modal" data-target="#addSplash">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                </svg>
+                New splash
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+                  <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                  <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+                </svg>
+                Profile
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Logout</a>
+              </div>
+            </li>
+          </ul>
         </div>
+      </div>
     </nav>
 
     <!-- Feed splashes -->
     <div class="container">
-        <div class="album py-5" id="listSplashes">
-            <div class="row">
-                <% error.length > 0 ? error : '' %>
-                <% for (splash of splashs) {%>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Splash">
-                            <title>Splash: <%= splash.title %></title>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-title"><%= splash.title %></p>
-                            <p class="card-text">
-                                <b>R$<%= splash.price %></b> | 
-                                <%= splash.category %>
-                                <br>
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="dropdown">
-                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Options
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#editSplash">Editar</a>
-                                        <form action="/artist/splashes/delete" method="post" class="dropdown-item">
-                                            <input type="hidden" name="id" value="<%= splash.id %>"> 
-                                            <button type="submit">Remove</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+      <div class="album py-5" id="listSplashes">
+        <div class="row">
+          <% error.length > 0 ? error : '' %>
+          <% for (splash of splashs) {%>
+            <div class="col-md-4">
+              <div class="card mb-4 shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Splash">
+                  <title>Splash: <%= splash.title %></title>
+                </svg>
+                <div class="card-body">
+                  <p class="card-title"><%= splash.title %></p>
+                  <p class="card-text">
+                    <b>R$<%= splash.price %></b> |
+                    <%= splash.category %>
+                    <br>
+                  </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="dropdown">
+                      <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Options
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" data-toggle="modal" data-target="#editSplash">Editar</a>
+                        <form action="/artist/splashes/delete" method="post" class="dropdown-item">
+                          <input type="hidden" name="id" value="<%= splash.id %>">
+                          <button type="submit">Remove</button>
+                        </form>
+                      </div>
                     </div>
+                  </div>
                 </div>
-                <%} %>
+              </div>
             </div>
+          <%} %>
         </div>
+      </div>
     </div>
 
     <!-- Modal Add Splash -->
     <div class="modal fade" id="addSplash" tabindex="-1" aria-labelledby="addSplashLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addSplashLabel">Add New Splash</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addSplashLabel">Add New Splash</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="/artist/splashes/add" method="post">
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label for="inputTitle">Title:</label>
+                  <input type="text" name="title" class="form-control" id="inputTitle" placeholder="Ex. It's all about love">
                 </div>
-                <div class="modal-body">
-                    <form action="/artist/splashes" method="post">
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <label for="inputTitle">Title:</label>
-                                <input type="text" name="title" class="form-control" id="inputTitle" placeholder="Ex. It's all about love">
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label for="inputPrice">Price:</label>
-                                <input type="number" name="price" class="form-control" id="inputPrice" placeholder="$40">
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label for="inputCategory">Category:</label>
-                                <input type="text" name="category" class="form-control" id="inputCategory" placeholder="Ex. Digital Art">
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label for="inputDisponibility">Disponibility:</label>
-                                <select id="inputDisponibility" name="disponibility" class="form-control">
-                                    <option selected>Choose...</option>
-                                    <option value="true">Available</option>
-                                    <option value="false">Unavailable</option>
-                                </select>
-                            </div>
-                            <input type="hidden" name="likes" value="0"> 
-                        </div>
+                <div class="form-group col-md-12">
+                  <label for="inputPrice">Price:</label>
+                  <input type="number" name="price" class="form-control" id="inputPrice" placeholder="$40">
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-dark">To save</button>
+                <div class="form-group col-md-12">
+                  <label for="inputCategory">Category:</label>
+                  <input type="text" name="category" class="form-control" id="inputCategory" placeholder="Ex. Digital Art">
                 </div>
+                <div class="form-group col-md-12">
+                  <label for="inputDisponibility">Disponibility:</label>
+                  <select id="inputDisponibility" name="disponibility" class="form-control">
+                    <option selected>Choose...</option>
+                    <option value="true">Available</option>
+                    <option value="false">Unavailable</option>
+                  </select>
+                </div>
+                <input type="hidden" name="likes" value="0">
+              </div>
+          </div>
+          <div class="modal-footer">
+            <input type="hidden" name="userId" value="0">
+            <button type="submit" class="btn btn-dark">To save</button>
+          </div>
             </form>
-            </div>
         </div>
+      </div>
     </div>
 
-     <!-- Modal Edit Splash -->
-     <div class="modal fade" id="editSplash" tabindex="-1" aria-labelledby="editSplashLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editSplashLabel">Edit Splash</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
+    <!-- Modal Edit Splash -->
+    <div class="modal fade" id="editSplash" tabindex="-1" aria-labelledby="editSplashLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editSplashLabel">Edit Splash</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="/artist/splashes/edit/<%= splash.id %>" method="put">
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label for="inputTitle">Title:</label>
+                  <input type="text" name="title" class="form-control" id="inputTitle" value="<%= splash.title %>">
                 </div>
-                <div class="modal-body">
-                    <form action="/artist/splashes/edit/<%= splash.id %>" method="put">
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <label for="inputTitle">Title:</label>
-                                <input type="text" name="title" class="form-control" id="inputTitle" value="<%= splash.title %>">
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label for="inputPrice">Price:</label>
-                                <input type="number" name="price" class="form-control" id="inputPrice" value="<%= splash.price %>">
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label for="inputCategory">Category:</label>
-                                <input type="text" name="category" class="form-control" id="inputCategory" value="<%= splash.category %>">
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label for="inputDisponibility">Disponibility</label>
-                                <select id="inputDisponibility" name="disponibility" class="form-control">
-                                    <% if (splash.disponibility){ %>
-                                    <option>Choose...</option>
-                                    <option selected value="true">Available</option>
-                                    <option value="false">Unavailable</option>
-                                    <% } else { %>
-                                    <option>Choose...</option>
-                                    <option value="true">Available</option>
-                                    <option selected value="false">Unavailable</option>
-                                    <% }%>
-                                </select>
-                            </div>
-                            <input type="hidden" name="likes" value="<%= splash.likes %>"> 
-                        </div>
+                <div class="form-group col-md-12">
+                  <label for="inputPrice">Price:</label>
+                  <input type="number" name="price" class="form-control" id="inputPrice" value="<%= splash.price %>">
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-dark">To save</button>
+                <div class="form-group col-md-12">
+                  <label for="inputCategory">Category:</label>
+                  <input type="text" name="category" class="form-control" id="inputCategory" value="<%= splash.category %>">
                 </div>
+                <div class="form-group col-md-12">
+                  <label for="inputDisponibility">Disponibility</label>
+                  <select id="inputDisponibility" name="disponibility" class="form-control">
+                    <% if (splash.disponibility){ %>
+                      <option>Choose...</option>
+                      <option selected value="true">Available</option>
+                      <option value="false">Unavailable</option>
+                    <% } else { %>
+                      <option>Choose...</option>
+                      <option value="true">Available</option>
+                      <option selected value="false">Unavailable</option>
+                    <% }%>
+                  </select>
+                </div>
+                <input type="hidden" name="likes" value="<%= splash.likes %>">
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-dark">To save</button>
+          </div>
             </form>
-            </div>
         </div>
+      </div>
     </div>
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-    
   </body>
 </html>
