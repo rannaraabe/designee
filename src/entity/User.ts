@@ -5,7 +5,9 @@ import {
     Unique,
     CreateDateColumn,
     UpdateDateColumn,
-    OneToMany
+    OneToMany,
+    ManyToMany,
+    JoinTable
 } from "typeorm";
 
 import * as bcrypt from "bcryptjs";
