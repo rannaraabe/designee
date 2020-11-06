@@ -118,4 +118,23 @@ export class SplashController {
         }
     }
 
+    // favoritar splash
+    async favSplash(request: Request, response:Response, next:NextFunction){
+        try {
+            const splash = await this.splashRepository.findOne(request.params.id);
+            if (splash) {
+                splash.favorite = true;
+                const update = await this.splashRepository.update(splash.id, splash);
+                return {splashs: await this.splashRepository.find() , error: ''}
+            }
+        } catch (error) {
+            return {splashs: await this.splashRepository.find() , error: 'erro ao curtir splash'}
+        }
+    }
+
+    //visualizar todas as splashs favoritas
+    async allFavs(request: Request, response: Response, next: NextFunction) {
+        return {splashs: await this.splashRepository.find() , error: ''} 
+    }
+
 }

@@ -86,4 +86,18 @@ export const Routes = [{
     controller: SplashController,
     action: "curtirSplash",
     view: 'pages/feed'
-}];
+},
+{
+    method: "post",
+    route: "/splash/favorite",
+    controller: SplashController,
+    action: "favSplash",
+    view: 'pages/feed'
+},
+{
+    method: "get",
+    route: "/favorites",
+    controller: SplashController,
+    action: "allFavs",
+    view: "pages/favorites"
+},];
