@@ -34,15 +34,16 @@ export const Routes = [{
     method: "get",
     route: "/users/:id",
     controller: UserController,
-    action: "one"
+    action: "one",
+    view: "pages/userPage"
 }, {
     method: "put",
-    route: "/users/:id",
+    route: "/users/edit/:id",
     controller: UserController,
     action: "edit"
 }, {
     method: "delete",
-    route: "/users/:id",
+    route: "/users/delete/:id",
     controller: UserController,
     action: "remove"
 }, {
@@ -51,33 +52,27 @@ export const Routes = [{
     controller: SplashController,
     action: "all",
     view: "pages/feed"
-}, {
-    method: "get",
-    route: "/cart",
-    controller: SplashController,
-    action: "all",
-    view: "pages/cart"
 },
 {
     method: "get",
-    route: "/artist/splashes",
+    route: "/artist/:id/splashes",
     controller: SplashController,
-    action: "all",
+    action: "allByUser",
     view: "pages/splashes"
 },
 {
     method: "post",
-    route: "/artist/splashes",
+    route: "/artist/splashes/add",
     controller: SplashController,
     action: "save",
     view: "pages/splashes"
 },
 {
     method: "put",
-    route: "/artist/splashes/:id",
+    route: "/artist/splashes/edit/:id",
     controller: SplashController,
     action: "edit",
-    view: 'pages/artist'
+    view: 'pages/splashes'
 },
 {
     method: "post",
@@ -113,4 +108,25 @@ export const Routes = [{
     controller: UserController,
     action: "listArtists",
     view: "pages/searchArtist"
+},
+{
+    method: "get",
+    route: "/cart",
+    controller: SplashController,
+    action: "allCart",
+    view: "pages/cart"
+},
+{
+    method: "post",
+    route: "/splash/cart",
+    controller: SplashController,
+    action: "addToCart",
+    view: "pages/feed"
+},
+{
+    method: "post",
+    route: "/cart/buy",
+    controller: SplashController,
+    action: "clearCart",
+    view: "pages/feed"
 }];
