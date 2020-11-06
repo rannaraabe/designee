@@ -5,7 +5,6 @@ import * as bodyParser from "body-parser";
 import {Request, Response} from "express";
 import {Routes} from "./routes";
 
-
 createConnection().then(async connection => {
 
     var cors = require('cors')

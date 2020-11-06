@@ -80,7 +80,7 @@ export class UserController {
                 );
 
                 if (user.isArtist) {
-                    response.redirect("/artist/"+user.id+"/splashes");
+                    response.redirect("/artist/" + user.id + "/splashes");
                 } else {
                     response.redirect("/feed");
                 }

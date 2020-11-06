@@ -170,15 +170,10 @@ export class SplashController {
 
     async clearCart(request: Request, response: Response, next: NextFunction) {
         try {
-            const splashs = request.body.splashs;
-            console.log(splashs);
-            // if (splashs) {
-            //     for (var splash of splashs) {
-            //         console.log(splash);
-            //         splash.cart = false;
-            //         const update = await this.splashRepository.update(splash.id, splash);
-            //     }
-            // }
+            const splashs = request.body;
+            for (var [key, value] of Object.entries(splashs)) {
+                const update = await this.splashRepository.update(value, { cart: false });
+            }
 
             return { splashs: await this.splashRepository.find(), error: '' }
         } catch (error) {
