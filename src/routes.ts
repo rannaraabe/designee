@@ -100,4 +100,11 @@ export const Routes = [{
     controller: SplashController,
     action: "allFavs",
     view: "pages/favorites"
-},];
+},
+{
+    method: "get",
+    route: "/search",
+    controller: UserController,
+    action: "listArtists",
+    view: "pages/searchArtist"
+}];
