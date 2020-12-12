@@ -1,4 +1,4 @@
-import { SplashController } from "./controller/SplashController";
+import { ItemController } from "./controller/ItemController";
 import { UserController } from "./controller/UserController";
 
 export const Routes = [{
@@ -49,56 +49,56 @@ export const Routes = [{
 }, {
     method: "get",
     route: "/feed",
-    controller: SplashController,
+    controller: ItemController,
     action: "all",
     view: "pages/feed"
 },
 {
     method: "get",
-    route: "/artist/:id/splashes",
-    controller: SplashController,
+    route: "/creator/:id/items",
+    controller: ItemController,
     action: "allByUser",
-    view: "pages/splashes"
+    view: "pages/items"
 },
 {
     method: "post",
-    route: "/artist/splashes/add",
-    controller: SplashController,
+    route: "/creator/items/add",
+    controller: ItemController,
     action: "save",
-    view: "pages/splashes"
+    view: "pages/items"
 },
 {
     method: "put",
-    route: "/artist/splashes/edit/:id",
-    controller: SplashController,
+    route: "/creator/items/edit/:id",
+    controller: ItemController,
     action: "edit",
-    view: 'pages/splashes'
+    view: 'pages/items'
 },
 {
     method: "post",
-    route: "/artist/splashes/delete",
-    controller: SplashController,
+    route: "/creator/items/delete",
+    controller: ItemController,
     action: "remove",
-    view: 'pages/splashes'
+    view: 'pages/items'
 },
 {
     method: "post",
-    route: "/splash/like",
-    controller: SplashController,
-    action: "curtirSplash",
+    route: "/item/like",
+    controller: ItemController,
+    action: "curtirItem",
     view: 'pages/feed'
 },
 {
     method: "post",
-    route: "/splash/favorite",
-    controller: SplashController,
-    action: "favSplash",
+    route: "/item/favorite",
+    controller: ItemController,
+    action: "favItem",
     view: 'pages/feed'
 },
 {
     method: "get",
     route: "/favorites",
-    controller: SplashController,
+    controller: ItemController,
     action: "allFavs",
     view: "pages/favorites"
 },
@@ -106,27 +106,27 @@ export const Routes = [{
     method: "get",
     route: "/search",
     controller: UserController,
-    action: "listArtists",
-    view: "pages/searchArtist"
+    action: "listCreators",
+    view: "pages/searchCreator"
 },
 {
     method: "get",
     route: "/cart",
-    controller: SplashController,
+    controller: ItemController,
     action: "allCart",
     view: "pages/cart"
 },
 {
     method: "post",
-    route: "/splash/cart",
-    controller: SplashController,
+    route: "/item/cart",
+    controller: ItemController,
     action: "addToCart",
     view: "pages/feed"
 },
 {
     method: "post",
     route: "/cart/buy",
-    controller: SplashController,
+    controller: ItemController,
     action: "clearCart",
     view: "pages/feed"
 }];

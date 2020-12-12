@@ -7,10 +7,10 @@ import {
     UpdateDateColumn
 } from "typeorm";
 
-import {Splash} from "./Splash";
+import {Item} from "./Item";
 
 @Entity()
-export class CommentSplash {
+export class CommentItem {
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -26,7 +26,7 @@ export class CommentSplash {
     @UpdateDateColumn()
     updateAt: Date;
 
-    @ManyToOne(() => Splash, splash => splash.splashsComment)
-    splash: Splash;
+    @ManyToOne(() => Item, item => item.itemsComment)
+    item: Item;
 
 }

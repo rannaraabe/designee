@@ -7,12 +7,12 @@ import {
     CreateDateColumn,
     UpdateDateColumn
 } from "typeorm";
-import { CommentSplash } from "./CommentSplash";
+import { CommentItem } from "./CommentItem";
 
 import {User} from "./User";
 
 @Entity()
-export class Splash {
+export class Item {
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -46,9 +46,9 @@ export class Splash {
     @UpdateDateColumn()
     updateAt: Date;
 
-    @ManyToOne(() => User, user => user.splashs)
+    @ManyToOne(() => User, user => user.items)
     user: User;
 
-    @OneToMany(() => CommentSplash, comment => comment.splash)
-    splashsComment: CommentSplash[];
+    @OneToMany(() => CommentItem, comment => comment.item)
+    itemsComment: CommentItem[];
 }
