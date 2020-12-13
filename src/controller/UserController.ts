@@ -9,10 +9,12 @@ export class UserController {
 
     private userRepository = getRepository(User);
 
+    // visualizar todos os usuarios
     async all(request: Request, response: Response, next: NextFunction) {
         return { users: await this.userRepository.find() }
     }
 
+    // visualizar um usuario
     async one(request: Request, response: Response, next: NextFunction) {
         try {
             const user = await this.userRepository.findOne(request.params.id);
@@ -23,11 +25,12 @@ export class UserController {
         }
     }
 
+    // salvar usuario
     async save(request: Request, response: Response, next: NextFunction) {
         try {
             const user = request.body;
-            if (user.isArtist === 'TRUE')
-                user.isArtist = true;
+            if (user.isCreator === 'TRUE')
+                user.isCreator = true;
             await this.userRepository.save(user);
             response.redirect("/");
         } catch (error) {
@@ -35,6 +38,7 @@ export class UserController {
         }
     }
 
+    // editar usuario
     async edit(request: Request, response: Response, next: NextFunction) {
         try {
             const user = await this.userRepository.findOne(request.params.id);
@@ -48,6 +52,7 @@ export class UserController {
         }
     }
 
+    // remover usuario
     async remove(request: Request, response: Response, next: NextFunction) {
         try {
             const user = await this.userRepository.findOne(request.params.id);
@@ -61,6 +66,7 @@ export class UserController {
         }
     }
 
+    // fazer login
     async login(request: Request, response: Response) {
         try {
             const user = await this.userRepository.findOne({
@@ -79,8 +85,8 @@ export class UserController {
                     { expiresIn: "12h" }
                 );
 
-                if (user.isArtist) {
-                    response.redirect("/artist/" + user.id + "/splashes");
+                if (user.isCreator) {
+                    response.redirect("/creator/" + user.id + "/items");
                 } else {
                     response.redirect("/feed");
                 }
@@ -94,17 +100,17 @@ export class UserController {
 
     }
 
-    // filtrar artista
-    async listArtists(request: Request, response: Response, next: NextFunction) {
+    // filtrar criadores
+    async listCreators(request: Request, response: Response, next: NextFunction) {
         try {
             const name = "%"+request.query.name+"%"
             if(request.query.name == ''){
                 return {users: await this.userRepository.find({
-                    where: { isArtist: 't' }
+                    where: { isCreator: 't' }
                 })}
             } else {
                 return {users : await this.userRepository.find({
-                    where: { isArtist: 't', fullname: Like(name) }
+                    where: { isCreator: 't', fullname: Like(name) }
                 })}
             }
         } catch (error) {

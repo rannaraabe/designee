@@ -11,7 +11,7 @@ import {
 } from "typeorm";
 
 import * as bcrypt from "bcryptjs";
-import {Splash} from "./Splash";
+import {Item} from "./Item";
 
 @Entity()
 @Unique(["email"])
@@ -30,7 +30,7 @@ export class User {
     password: string;
 
     @Column()
-    isArtist: boolean;
+    isCreator: boolean;
 
     @Column()
     @CreateDateColumn()
@@ -40,8 +40,8 @@ export class User {
     @UpdateDateColumn()
     updateAt: Date;
 
-    @OneToMany(() => Splash, splash => splash.user)
-    splashs: Splash[];
+    @OneToMany(() => Item, item => item.user)
+    items: Item[];
 
     hashPassword() {
         this.password = bcrypt.hashSync(this.password, 8);
