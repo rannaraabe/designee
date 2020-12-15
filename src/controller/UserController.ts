@@ -5,21 +5,29 @@ import { User } from "../entity/User";
 import config from "../config/config";
 import * as jwt from "jsonwebtoken";
 
+import { UsuarioService } from '../service/UsuarioService'
+
 export class UserController {
 
     private userRepository = getRepository(User);
 
+    constructor(private usuarioService: UsuarioService){}
+
     // visualizar todos os usuarios
     async all(request: Request, response: Response, next: NextFunction) {
-        return { users: await this.userRepository.find() }
+        try {
+            response.json({users: this.usuarioService.getAllUsers()}) 
+        } catch (error) {
+            return {err: 'users_not_found'}
+        }
     }
 
     // visualizar um usuario
     async one(request: Request, response: Response, next: NextFunction) {
         try {
-            const user = await this.userRepository.findOne(request.params.id);
-            console.log(user);
-            return { user: user };
+            if (request.params.id) {
+                response.json({ user: this.usuarioService.getOne(request.params.id) });
+            }
         } catch (error) {
             response.json({ erro: "Não foi possível encontrar o usuário.", error }).status(400);
         }
@@ -31,8 +39,8 @@ export class UserController {
             const user = request.body;
             if (user.isCreator === 'TRUE')
                 user.isCreator = true;
-            await this.userRepository.save(user);
-            response.redirect("/");
+            
+            response.json({user: await this.usuarioService.save(user)})
         } catch (error) {
             response.json({ erro: "Não foi possível cadastrar o usuário.", error }).status(400);
         }
@@ -105,13 +113,13 @@ export class UserController {
         try {
             const name = "%"+request.query.name+"%"
             if(request.query.name == ''){
-                return {users: await this.userRepository.find({
+                response.json( {users: await this.userRepository.find({
                     where: { isCreator: 't' }
-                })}
+                })})
             } else {
-                return {users : await this.userRepository.find({
+                response.json( {users : await this.userRepository.find({
                     where: { isCreator: 't', fullname: Like(name) }
-                })}
+                })})
             }
         } catch (error) {
             response.json({erro: "Erro ao buscar usuário.", error}).status(400);

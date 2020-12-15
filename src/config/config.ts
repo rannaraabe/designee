@@ -1,3 +1,3 @@
 export default {
-    jwtSecret: "@PrivateKey@"
-  };
+  jwtSecret: "@PrivateKey@"
+};
