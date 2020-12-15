@@ -39,7 +39,6 @@ export class UserController {
             const user = request.body;
             if (user.isCreator === 'TRUE')
                 user.isCreator = true;
-            
             response.json({user: await this.usuarioService.save(user)})
         } catch (error) {
             response.json({ erro: "Não foi possível cadastrar o usuário.", error }).status(400);
@@ -49,12 +48,11 @@ export class UserController {
     // editar usuario
     async edit(request: Request, response: Response, next: NextFunction) {
         try {
-            const user = await this.userRepository.findOne(request.params.id);
+            const user = await this.usuarioService.getOne(request.params.id);
             if (!user) {
                 response.json({ error: "Usuário não encontrado!" }).status(400);
             }
-            const update = await this.userRepository.update(user.id, request.body)
-            response.json(update)
+            response.json({user: await this.usuarioService.update(user, request.body)})
         } catch (error) {
             response.json({ erro: "Não foi possível atualizar o usuário.", error }).status(400);
         }
@@ -63,12 +61,11 @@ export class UserController {
     // remover usuario
     async remove(request: Request, response: Response, next: NextFunction) {
         try {
-            const user = await this.userRepository.findOne(request.params.id);
+            const user = await this.usuarioService.getOne(request.params.id);
             if (!user) {
                 response.json({ error: "Usuário não encontrado!" }).status(400);
             }
-            const remove = await this.userRepository.remove(user);
-            response.json(remove)
+            response.json({user: await this.usuarioService.remove(user)})
         } catch (error) {
             response.json({ erro: "Não foi possível remover o usuário.", error }).status(400);
         }
@@ -77,7 +74,7 @@ export class UserController {
     // fazer login
     async login(request: Request, response: Response) {
         try {
-            const user = await this.userRepository.findOne({
+            const user = await this.usuarioService.getOne({
                 where: {
                     email: request.body.email
                 }
@@ -94,9 +91,9 @@ export class UserController {
                 );
 
                 if (user.isCreator) {
-                    response.redirect("/creator/" + user.id + "/items");
+                    response.json({user: await this.usuarioService.getOne(user.id)});
                 } else {
-                    response.redirect("/feed");
+                    response.json();
                 }
                 return { "Logged": true, token }
             } else {
@@ -113,11 +110,11 @@ export class UserController {
         try {
             const name = "%"+request.query.name+"%"
             if(request.query.name == ''){
-                response.json( {users: await this.userRepository.find({
+                response.json( {users: await this.usuarioService.findOneUser({
                     where: { isCreator: 't' }
                 })})
             } else {
-                response.json( {users : await this.userRepository.find({
+                response.json( {users : await this.usuarioService.findOneUser({
                     where: { isCreator: 't', fullname: Like(name) }
                 })})
             }
