@@ -1,7 +1,6 @@
 import "reflect-metadata";
 import {createConnection} from "typeorm";
 import * as express from "express";
-import * as bodyParser from "body-parser";
 import {Request, Response} from "express";
 import {Routes} from "./routes";
 
@@ -14,10 +13,10 @@ createConnection().then(async connection => {
     //set cors
     app.use('*', cors());
 
-    app.use(bodyParser.urlencoded({ extended: true }))
+    app.use(express.json())
 
     // set the view engine to ejs
-    app.set('view engine', 'ejs');
+    // app.set('view engine', 'ejs');
 
     // app.get('/site/', function(req, res) {
     //     res.render('pages/index');
@@ -28,11 +27,11 @@ createConnection().then(async connection => {
         (app as any)[route.method](route.route, (req: Request, res: Response, next: Function) => {
             const result = (new (route.controller as any))[route.action](req, res, next);
             if (result instanceof Promise) {
-                result.then(result => result !== null && result !== undefined ? res.render(route.view, result) : undefined);
+                result.then(result => result !== null && result !== undefined ? res.json(result) : undefined);
 
             } else if (result !== null && result !== undefined) {
                 // res.json(result);
-                res.render(route.view, result);
+                res.json(result);
             }
         });
     });
