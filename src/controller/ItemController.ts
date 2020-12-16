@@ -1,24 +1,19 @@
-import { getRepository } from "typeorm";
+
 import { NextFunction, Request, Response } from "express";
-import { Item } from '../entity/Item'
-import { User } from "../entity/User";
 
 import { ItemService } from '../service/ItemService';
 import { UsuarioService } from '../service/UsuarioService';
 
 export class ItemController {
 
-    private itemRepository = getRepository(Item);
-    private userRepository = getRepository(User);
-
     constructor(private itemService: ItemService, private usuarioService: UsuarioService){}
     
     // visualizar todas o items
     async all(request: Request, response: Response, next: NextFunction) {
         try {
-            return response.json({items: this.itemService.getAllItems()})
+            response.json({items: await this.itemService.getAllItems()})
         } catch (error) {
-            return response.json({erro: 'Não foi possível encontrar os items.'})
+            response.json({erro: 'Não foi possível encontrar os items.'})
         }
     }
 
@@ -27,10 +22,10 @@ export class ItemController {
         try {
             const item = await this.itemService.save(request.body);
             // return {items: item}
-            return response.json({items: await this.itemService.getOne(item)});
+            response.json({items: await this.itemService.getOne(item)});
         } catch (error) {
             //return {items: [], error: 'error_save_item'}
-            return response.json({error: "Não foi possivel adicionar o item."}).status(400);
+            response.json({error: "Não foi possivel adicionar o item."}).status(400);
         }
     }
 
@@ -44,13 +39,13 @@ export class ItemController {
                 })
 
                 if(items) {
-                    return response.json({items: await this.itemService.findAllItems(user)})
+                    response.json({items: await this.itemService.findAllItems(user)})
                 }
             } else {
-                return response.json({user: await this.usuarioService.getOne(user)})
+                response.json({user: await this.usuarioService.getOne(user)})
             }
         } catch (error) {
-            return response.json({error: "Não foi possivel encontrar os items pelo usuário."}).status(400);
+            response.json({error: "Não foi possivel encontrar os items pelo usuário."}).status(400);
         }
     }
 
@@ -59,10 +54,10 @@ export class ItemController {
         try {
             const item = await this.itemService.getOne(request.body.id);
             if(item) {
-                return response.json({items: await this.itemService.remove(item)});
+                response.json({items: await this.itemService.remove(item)});
             }
         } catch (error) {
-            return response.json({error: 'Erro ao deletar o item.'}).status(400);
+            response.json({error: 'Erro ao deletar o item.'}).status(400);
         }
     }
 
@@ -76,12 +71,12 @@ export class ItemController {
             });
 
             if(items) {
-                return response.json(items);
+                response.json(items);
             } else {
-                return response.json();
+                response.json();
             }
         } catch (error) {
-            return response.json({error: 'Erro ao filtrar os items.'}).status(400);
+            response.json({error: 'Erro ao filtrar os items.'}).status(400);
         }
     }
 
@@ -104,10 +99,10 @@ export class ItemController {
             if (item) {
                 item.likes = item.likes + 1;
                 const update = await this.itemService.update(item.id, item);
-                return response.json({items: await this.itemService.getAllItems(), error: '' })
+                response.json({items: await this.itemService.getAllItems(), error: '' })
             }
         } catch (error) {
-            return response.json({error: 'Erro ao curtir item.' }).status(400);
+            response.json({error: 'Erro ao curtir item.' }).status(400);
         }
     }
 
@@ -118,16 +113,16 @@ export class ItemController {
             if (item) {
                 item.favorite = true;
                 const update = await this.itemService.update(item.id, item);
-                return response.json({items: await this.itemService.getAllItems()});
+                response.json({items: await this.itemService.getAllItems()});
             }
         } catch (error) {
-            return response.json({error: 'Erro ao favoritar item.'}).status(400);
+            response.json({error: 'Erro ao favoritar item.'}).status(400);
         }
     }
 
     // visualizar todas os items favoritos
     async allFavs(request: Request, response: Response, next: NextFunction) {
-        return response.json({
+        response.json({
             items: await this.itemService.getOne({
                 where: {
                     favorite: true
@@ -143,16 +138,16 @@ export class ItemController {
             if (item) {
                 item.cart = true;
                 const update = await this.itemService.update(item.id, item);
-                return response.json({items: await this.itemService.getAllItems()});
+                response.json({items: await this.itemService.getAllItems()});
             }
         } catch (error) {
-            return response.json({error: 'Erro ao adicionar item ao carrinho.'}).status(400);
+            response.json({error: 'Erro ao adicionar item ao carrinho.'}).status(400);
         }
     }
 
     // visualizar carrinho de compras
     async allCart(request: Request, response: Response, next: NextFunction) {
-        return response.json({
+        response.json({
             items: await this.itemService.findAllItems({
                 where: {
                     cart: true
@@ -168,9 +163,9 @@ export class ItemController {
             for (var [key, value] of Object.entries(items)) {
                 const update = await this.itemService.update(value, { cart: false });
             }
-            return response.json({items: await this.itemService.getAllItems()});
+            response.json({items: await this.itemService.getAllItems()});
         } catch (error) {
-            return response.json({error: 'Erro ao tentar finalizar a compra.'});
+            response.json({error: 'Erro ao tentar finalizar a compra.'});
         }
     }
 }

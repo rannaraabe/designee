@@ -9,16 +9,17 @@ import { UsuarioService } from '../service/UsuarioService'
 
 export class UserController {
 
-    private userRepository = getRepository(User);
+    constructor(){}
 
-    constructor(private usuarioService: UsuarioService){}
-
+    private usuarioService: UsuarioService = new UsuarioService()
     // visualizar todos os usuarios
     async all(request: Request, response: Response, next: NextFunction) {
         try {
-            response.json({users: this.usuarioService.getAllUsers()}) 
+            console.log("entrou");
+            const users = await this.usuarioService.getAllUsers()
+            response.json({users}) 
         } catch (error) {
-            return {err: 'users_not_found'}
+            response.json({err: 'users_not_found'}) 
         }
     }
 
@@ -89,15 +90,12 @@ export class UserController {
                     config.jwtSecret,
                     { expiresIn: "12h" }
                 );
-
-                if (user.isCreator) {
-                    response.json({user: await this.usuarioService.getOne(user.id)});
-                } else {
-                    response.json();
-                }
-                return { "Logged": true, token }
+        
+                response.json({user: await this.usuarioService.getOne(user.id)});
+              
+                response.json( { "Logged": true, token } )
             } else {
-                return { error: "login_fail" };
+                response.json({ error: "login_fail" });
             }
         } catch (error) {
             response.json({ erro: "Não foi possível realizar o login." }).status(400);

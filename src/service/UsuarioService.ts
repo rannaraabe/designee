@@ -7,7 +7,7 @@ export class UsuarioService {
 
     constructor() { }
 
-    async getAllUsers() {
+    async getAllUsers():Promise<any> {
         return await this.userRepository.find();
     }
     
