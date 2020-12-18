@@ -6,8 +6,11 @@ import { UsuarioService } from '../service/UsuarioService';
 
 export class ItemController {
 
-    constructor(private itemService: ItemService, private usuarioService: UsuarioService){}
+    constructor(){}
     
+    private itemService: ItemService = new ItemService()
+    private usuarioService: UsuarioService = new UsuarioService()
+
     // visualizar todas o items
     async all(request: Request, response: Response, next: NextFunction) {
         try {

@@ -6,15 +6,21 @@ import {
     UpdateDateColumn
 } from "typeorm";
 
+interface MetodoPagamento {
+    cartaoCredito: string;
+    avista: string;
+    boleto: string;
+}
+
 
 @Entity()
-export class Pagamento {
+export class TipoPagamento {
 
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    tipoPagamento: string;
+    tipoPagamento: MetodoPagamento;
 
     @Column()
     @CreateDateColumn()

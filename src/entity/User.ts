@@ -6,12 +6,11 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
     OneToMany,
-    ManyToMany,
-    JoinTable
 } from "typeorm";
 
 import * as bcrypt from "bcryptjs";
 import {Item} from "./Item";
+import { Compras } from "./Compras";
 
 @Entity()
 @Unique(["email"])
@@ -42,6 +41,9 @@ export class User {
 
     @OneToMany(() => Item, item => item.user)
     items: Item[];
+
+    @OneToMany(() => Item, item => item.user)
+    compras: Compras[];
 
     hashPassword() {
         this.password = bcrypt.hashSync(this.password, 8);
