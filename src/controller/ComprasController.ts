@@ -22,13 +22,12 @@ export class ComprasController {
             const item = await this.itemService.getOne(request.body.id_item)
 
             var novoServico:Servicos  = new Servicos(request.body.descricao)
+
             novoServico.setTipoEnvio(request.body.index_tipoEnvio, request.body.detalheEnvio)
             novoServico.setTipoPagamento(request.body.index_pagamento, request.body.detalhePagamento)
             
             novoServico.user = user
             novoServico.item = item
-
-            console.log(novoServico);
             
             const compra = await this.comprasService.RealizarCompra(novoServico)
 

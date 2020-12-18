@@ -16,32 +16,29 @@ enum Pagamento {
     boleto,
 }
 
-export class Servicos extends Compras{
-    
+export class Servicos extends Compras {
+
     constructor(descricao) {
-        super(descricao)    
+        super(descricao)
     }
 
     setTipoEnvio(indexEnvio, detalheEnvio) {
-        var tipoenvio:TipoEnvio = new TipoEnvio()
+        var tipoenvio: TipoEnvio = new TipoEnvio()
 
         tipoenvio.tipoEnvio = Envio[indexEnvio];
+        tipoenvio.dadosEnvio = detalheEnvio
 
-        if (indexEnvio == 0) {
-            tipoenvio.dadosEnvio = detalheEnvio
-        }
 
         this.tipoEnvio = tipoenvio.tipoEnvio
     }
 
     setTipoPagamento(indexPagamento, detalhePagamento) {
 
-        var tipoPagamento:TipoPagamento = new TipoPagamento() 
+        var tipoPagamento: TipoPagamento = new TipoPagamento()
         tipoPagamento.tipoPagamento = Pagamento[indexPagamento];
 
-        if (indexPagamento == 0) {
-            tipoPagamento.dadosPagamento = detalhePagamento
-        }
+        tipoPagamento.dadosPagamento = detalhePagamento
+
 
         this.tipoPagamento = tipoPagamento.tipoPagamento
     }
