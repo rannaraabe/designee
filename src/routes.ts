@@ -1,5 +1,6 @@
 import { ItemController } from "./controller/ItemController";
 import { UserController } from "./controller/UserController";
+import { ComprasController } from "./controller/ComprasController";
 
 export const Routes = [{
     method: "get",
@@ -96,6 +97,12 @@ export const Routes = [{
     route: "/item/cart",
     controller: ItemController,
     action: "addToCart",
+},
+{
+    method: "post",
+    route: "/exemplo/servico/comprar",
+    controller: ComprasController,
+    action: "RealizarCompra",
 },
 {
     method: "post",

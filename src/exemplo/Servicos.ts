@@ -1,6 +1,6 @@
 import { Compras } from "../entity/Compras";
-import { TipoPagamento } from "../entity/TipoPagamento";
 import { TipoEnvio } from "../entity/TipoEnvio";
+import { TipoPagamento } from "../entity/TipoPagamento";
 
 enum Envio {
     correios,
@@ -17,19 +17,32 @@ enum Pagamento {
 }
 
 export class Servicos extends Compras{
-
-    private tp: TipoPagamento = new TipoPagamento()
-    private te: TipoEnvio = new TipoEnvio()
     
-    constructor(parameters) {
-        super()    
+    constructor(descricao) {
+        super(descricao)    
     }
 
-    realizarCompra() {
-        this.te.tipoEnvio.metodoEnvio = Envio[0];
+    setTipoEnvio(indexEnvio, detalheEnvio) {
+        var tipoenvio:TipoEnvio = new TipoEnvio()
+
+        tipoenvio.tipoEnvio = Envio[indexEnvio];
+
+        if (indexEnvio == 0) {
+            tipoenvio.dadosEnvio = detalheEnvio
+        }
+
+        this.tipoEnvio = tipoenvio.tipoEnvio
     }
 
-    setTipoPagamento() {
-        this.tp.tipoPagamento.metodoPagamento = Pagamento[2];
+    setTipoPagamento(indexPagamento, detalhePagamento) {
+
+        var tipoPagamento:TipoPagamento = new TipoPagamento() 
+        tipoPagamento.tipoPagamento = Pagamento[indexPagamento];
+
+        if (indexPagamento == 0) {
+            tipoPagamento.dadosPagamento = detalhePagamento
+        }
+
+        this.tipoPagamento = tipoPagamento.tipoPagamento
     }
 }

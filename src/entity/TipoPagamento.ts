@@ -18,7 +18,10 @@ export class TipoPagamento {
     id: number;
 
     @Column()
-    tipoPagamento: MetodoPagamento;
+    tipoPagamento: string;
+    
+    @Column()
+    dadosPagamento: string;
 
     @Column()
     @CreateDateColumn()

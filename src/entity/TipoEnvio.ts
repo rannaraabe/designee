@@ -17,7 +17,10 @@ export class TipoEnvio {
     id: number;
 
     @Column()
-    tipoEnvio: MetodoEnvio;
+    tipoEnvio: string;
+    
+    @Column()
+    dadosEnvio: string;
 
     @Column()
     @CreateDateColumn()

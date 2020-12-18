@@ -13,11 +13,21 @@ import {User} from "./User";
 @Entity()
 export abstract class Compras {
 
+    constructor(descricao){
+        this.descricao = descricao
+    }
+
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
     descricao: string;
+
+    @Column()
+    tipoPagamento: string;
+
+    @Column()
+    tipoEnvio: string;
 
     @Column()
     @CreateDateColumn()
@@ -33,7 +43,7 @@ export abstract class Compras {
     @ManyToOne(() => User, user => user.compras)
     user: User;
 
-    abstract realizarCompra():any
+    abstract setTipoEnvio(indexEnvio, detalheEnvio):any
 
-    abstract setTipoPagamento():any
+    abstract setTipoPagamento(indexPagamento, detalhePagamento):any
 }
