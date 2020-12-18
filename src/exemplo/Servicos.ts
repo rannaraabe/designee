@@ -1,18 +1,35 @@
 import { Compras } from "../entity/Compras";
 import { TipoPagamento } from "../entity/TipoPagamento";
+import { TipoEnvio } from "../entity/TipoEnvio";
+
+enum Envio {
+    correios,
+    transportadora,
+    motoboy,
+    retiradaEmMaos,
+}
+
+enum Pagamento {
+    cartaoCredito,
+    cartaoDebito,
+    avista,
+    boleto,
+}
 
 export class Servicos extends Compras{
 
-    private tipoPagamento: TipoPagamento = new TipoPagamento()
+    private tp: TipoPagamento = new TipoPagamento()
+    private te: TipoEnvio = new TipoEnvio()
     
     constructor(parameters) {
         super()    
     }
 
     realizarCompra() {
-        //Implementar aqui logica de finalizar compra
+        this.te.tipoEnvio.metodoEnvio = Envio[0];
     }
+
     setTipoPagamento() {
-        this.tipoPagamento.tipoPagamento.avista = "100 R$";
+        this.tp.tipoPagamento.metodoPagamento = Pagamento[2];
     }
 }
